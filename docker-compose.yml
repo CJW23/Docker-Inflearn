@@ -1,0 +1,21 @@
+version: "3"
+servi
+    #컨테이너 여러개 생성 가능
+    reactss:      #container 이름
+        build:
+            context: .
+            dockerfile: Dockerfile.dev      #얘를 통해 이미지를 만들고 컨테이너 생성
+        ports:
+            - "3000:3000"
+        volumes:
+            - /usr/src/app/node_modules
+            - ./:/usr/src/app
+        stdin_open: true
+    tests:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        volumes:
+            - /usr/src/app/node_modules
+            - ./:/usr/src/app
+        command: ["npm", "run", "test"]
