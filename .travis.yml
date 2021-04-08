@@ -14,3 +14,16 @@ script:
 
 after_success:
   - echo "test success"
+
+#배포
+deploy:
+  provider: elasticbeanstalk    #elastic bean stalk
+  region: "us-east-2"           #elastic bean stalk 만들때 지역
+  app: "docker-react-app"       #elastic bean stalk app 이름
+  env: "Dockerreactapp-env"
+  bucket_name: "elasticbeanstalk-us-east-2-045230513471"
+  bucket_path: "docker-react-app"
+  on:
+    branch: master    #maseter에 푸시 될때만
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
